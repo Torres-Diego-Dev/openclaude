@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  openclaude-cli:
+    build: .
+    # Estas duas linhas permitem que o terminal interativo funcione
+    stdin_open: true 
+    tty: true        
+    volumes:
+      # Montar a pasta atual dentro do container na pasta /workspace
+      - .:/workspace
+    environment:
+      # As configurações nativas do Ollama
+      - CLAUDE_CODE_USE_OPENAI=1
+      # Pulo do gato: host.docker.internal permite o docker acessar o PC anfitrião
+      - OPENAI_BASE_URL=http://host.docker.internal:11434/v1
+      # O OpenClaude pede uma chave porque o host não se chama "localhost", então damos uma chave falsa
+      - OPENAI_API_KEY=dummy-key-para-ollama
+      # Modelo do seu Ollama
+      - OPENAI_MODEL=qwen2.5-coder:7b

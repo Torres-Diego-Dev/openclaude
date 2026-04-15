@@ -1,0 +1,20 @@
+Passo 1: Baixar e Instalar o Ollama
+
+    Baixe o Ollama para o seu sistema operacional (Windows, macOS ou Linux) no site oficial: https://ollama.com/
+
+Passo 2: Baixar o modelo Llama
+
+    ollama run qwen2.5-coder:7b
+
+
+Passo 3: Instale as dependências do Open claude
+
+    npm install
+    npm run build
+
+Passo 4: Levantar o serviço no Docker 
+
+    docker-compose run --rm openclaude-cli
+
+Passo 5: Executar dentro da pasta destino
+    docker run -it --rm -v "${PWD}:/workspace" -e CLAUDE_CODE_USE_OPENAI=1 -e OPENAI_BASE_URL=http://host.docker.internal:11434/v1 -e OPENAI_API_KEY=dummy -e OPENAI_MODEL=qwen2.5-coder:7b openclaude-openclaude-cli
